@@ -3,19 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextToSpeech", "TextToSpeech\TextToSpeech.csproj", "{15649B4B-7911-44B4-AD37-6848A668B599}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextToSpeech", "TextToSpeech\TextToSpeech.csproj", "{15649B4B-7911-44B4-AD37-6848A668B599}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PptxScraper", "PptxScraper\PptxScraper.csproj", "{CC065A47-CE6C-4E96-BA9B-F709D4E4ADC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PptxScraper", "PptxScraper\PptxScraper.csproj", "{CC065A47-CE6C-4E96-BA9B-F709D4E4ADC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpansionScraper", "ExpansionScraper\ExpansionScraper.csproj", "{99EE2A50-C5F8-4AE4-AFF5-535303DCB6E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpansionScraper", "ExpansionScraper\ExpansionScraper.csproj", "{99EE2A50-C5F8-4AE4-AFF5-535303DCB6E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "Tests\TestProject1\TestProject1.csproj", "{E31B081C-2857-462D-B7E8-FE14303DC59E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "Tests\TestProject1\TestProject1.csproj", "{E31B081C-2857-462D-B7E8-FE14303DC59E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration", "Configuration\Configuration.csproj", "{07BAF629-FB89-4D95-AD3A-A083CBC5366C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configuration", "Configuration\Configuration.csproj", "{07BAF629-FB89-4D95-AD3A-A083CBC5366C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "Logging\Logging.csproj", "{40484AB3-2056-42E1-A715-5DA11FFF9763}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonUtilities", "CommonUtilities\CommonUtilities.csproj", "{132BC83E-702E-476C-A2FA-2163F72399B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonUtilities", "CommonUtilities\CommonUtilities.csproj", "{132BC83E-702E-476C-A2FA-2163F72399B9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Security", "Security\Security.csproj", "{B2632A19-9A4B-4F98-861E-ABFAB5867DE6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModels", "DtaModels\DataModels.csproj", "{2E118607-ECE1-4DBC-92B9-979B08F3F4AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTS-GUI", "TTS-GUI\TTS-GUI\TTS-GUI.csproj", "{A85706CA-BCFE-4543-95D9-12F8AD134BD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +57,18 @@ Global
 		{132BC83E-702E-476C-A2FA-2163F72399B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{132BC83E-702E-476C-A2FA-2163F72399B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{132BC83E-702E-476C-A2FA-2163F72399B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2632A19-9A4B-4F98-861E-ABFAB5867DE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2632A19-9A4B-4F98-861E-ABFAB5867DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2632A19-9A4B-4F98-861E-ABFAB5867DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2632A19-9A4B-4F98-861E-ABFAB5867DE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E118607-ECE1-4DBC-92B9-979B08F3F4AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E118607-ECE1-4DBC-92B9-979B08F3F4AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E118607-ECE1-4DBC-92B9-979B08F3F4AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E118607-ECE1-4DBC-92B9-979B08F3F4AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A85706CA-BCFE-4543-95D9-12F8AD134BD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A85706CA-BCFE-4543-95D9-12F8AD134BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A85706CA-BCFE-4543-95D9-12F8AD134BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A85706CA-BCFE-4543-95D9-12F8AD134BD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
