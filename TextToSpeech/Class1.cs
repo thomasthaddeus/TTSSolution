@@ -1,8 +1,10 @@
 ﻿/*
- * Author: Thaddeus Thomas 
- * Date:
- * Project:
- * Solution: 
+ * Author:      Thaddeus Thomas 
+ * Date:        20230327
+ * Project:     TextToSpeech
+ * Solution:    TTS-Solution
+ * 
+ * Notes: 
  *
  */
 
