@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Presentation;
-
-namespace PptxScraper
+﻿namespace PptxScraper
 {
     public class PowerPointScraper
     {

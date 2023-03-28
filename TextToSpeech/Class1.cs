@@ -1,15 +1,13 @@
 ﻿/*
- * Author:      Thaddeus Thomas 
+ * Author:      Thaddeus Thomas
  * Date:        20230327
  * Project:     TextToSpeech
  * Solution:    TTS-Solution
- * 
- * Notes: 
+ *
+ * Notes:
  *
  */
 
-using System;
-using System.Threading.Tasks;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
 

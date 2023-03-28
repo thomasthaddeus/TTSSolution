@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace Configuration
 {
@@ -24,6 +23,7 @@ namespace Configuration
         {
             return _configuration["CognitiveServices:Region"];
         }
+
         // Add more methods here to get other configuration settings as needed
     }
 }
