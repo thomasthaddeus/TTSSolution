@@ -1,4 +1,6 @@
-﻿namespace PptxScraper
+﻿using DocumentFormat.OpenXml;
+
+namespace PptxScraper
 {
     public class PowerPointScraper
     {
