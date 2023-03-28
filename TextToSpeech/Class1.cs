@@ -7,7 +7,7 @@
  */
 
 using System;
-using System.Data;
+using System.Threading.Tasks;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
 
@@ -27,7 +27,7 @@ namespace TextToSpeech
         public async Task SynthesizeTextToSpeechAsync(string text, string outputFilePath)
         {
             var config = SpeechConfig.FromSubscription(SP_KEY, SP_REG);
-            using var audioConfig = AudioConfig.FromWavFileOutput(outputFilePath);
+            using AudioConfig audioConfig = AudioConfig.FromWavFileOutput(outputFilePath);
             using var synthesizer = new SpeechSynthesizer(config, audioConfig);
 
             var result = await synthesizer.SpeakTextAsync(text);
