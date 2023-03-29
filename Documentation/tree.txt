@@ -1,0 +1,209 @@
+Folder PATH listing for volume DATA
+D:.
+├───CommonUtilities
+│   ├───bin
+│   │   ├───Debug
+│   │   │   └───net7.0
+│   │   └───Release
+│   │       └───net7.0
+│   └───obj
+│       ├───Debug
+│       │   └───net7.0
+│       │       ├───ref
+│       │       └───refint
+│       └───Release
+│           └───net7.0
+│               ├───ref
+│               └───refint
+├───Configuration
+│   ├───bin
+│   │   ├───Debug
+│   │   │   └───net7.0
+│   │   └───Release
+│   │       └───net7.0
+│   └───obj
+│       ├───Debug
+│       │   └───net7.0
+│       │       ├───ref
+│       │       └───refint
+│       └───Release
+│           └───net7.0
+│               ├───ref
+│               └───refint
+├───DtaModels
+│   ├───bin
+│   │   ├───Debug
+│   │   │   └───net7.0
+│   │   └───Release
+│   │       └───net7.0
+│   └───obj
+│       ├───Debug
+│       │   └───net7.0
+│       │       ├───ref
+│       │       └───refint
+│       └───Release
+│           └───net7.0
+│               ├───ref
+│               └───refint
+├───ExpansionScraper
+│   ├───bin
+│   │   └───Debug
+│   │       └───net7.0
+│   └───obj
+│       └───Debug
+│           └───net7.0
+│               ├───ref
+│               └───refint
+├───Logging
+│   ├───bin
+│   │   ├───Debug
+│   │   └───Release
+│   ├───obj
+│   │   ├───Debug
+│   │   │   └───TempPE
+│   │   └───Release
+│   └───Properties
+├───packages
+│   ├───NLog.5.1.2
+│   │   └───lib
+│   │       ├───net35
+│   │       ├───net45
+│   │       ├───net46
+│   │       ├───netstandard1.3
+│   │       ├───netstandard1.5
+│   │       └───netstandard2.0
+│   └───NLog.Schema.5.1.2
+│       ├───content
+│       └───contentFiles
+│           └───any
+│               └───any
+├───PptxScraper
+│   ├───bin
+│   │   ├───Debug
+│   │   │   └───net7.0
+│   │   └───Release
+│   │       └───net7.0
+│   └───obj
+│       ├───Debug
+│       │   └───net7.0
+│       │       ├───ref
+│       │       └───refint
+│       └───Release
+│           └───net7.0
+│               ├───ref
+│               └───refint
+├───Security
+│   ├───bin
+│   │   └───Debug
+│   │       └───net7.0
+│   └───obj
+│       └───Debug
+│           └───net7.0
+│               ├───ref
+│               └───refint
+├───Tests
+│   ├───bin
+│   │   └───Debug
+│   │       └───net7.0
+│   ├───obj
+│   │   └───Debug
+│   │       └───net7.0
+│   │           ├───ref
+│   │           └───refint
+│   └───TestProject1
+│       ├───bin
+│       │   └───Debug
+│       │       └───net7.0
+│       └───obj
+│           └───Debug
+│               └───net7.0
+│                   ├───ref
+│                   └───refint
+├───TextToSpeech
+│   ├───bin
+│   │   ├───ARM
+│   │   │   ├───Debug
+│   │   │   │   └───net7.0
+│   │   │   └───Release
+│   │   │       └───net7.0
+│   │   ├───ARM64
+│   │   │   ├───Debug
+│   │   │   │   └───net7.0
+│   │   │   └───Release
+│   │   │       └───net7.0
+│   │   ├───Debug
+│   │   │   └───net7.0
+│   │   ├───Win32
+│   │   │   ├───Debug
+│   │   │   │   └───net7.0
+│   │   │   └───Release
+│   │   │       └───net7.0
+│   │   ├───x64
+│   │   │   ├───Debug
+│   │   │   │   └───net7.0
+│   │   │   └───Release
+│   │   │       └───net7.0
+│   │   └───x86
+│   │       ├───Debug
+│   │       │   └───net7.0
+│   │       └───Release
+│   │           └───net7.0
+│   └───obj
+│       ├───ARM
+│       │   ├───Debug
+│       │   │   └───net7.0
+│       │   │       ├───ref
+│       │   │       └───refint
+│       │   └───Release
+│       │       └───net7.0
+│       │           ├───ref
+│       │           └───refint
+│       ├───ARM64
+│       │   ├───Debug
+│       │   │   └───net7.0
+│       │   │       ├───ref
+│       │   │       └───refint
+│       │   └───Release
+│       │       └───net7.0
+│       │           ├───ref
+│       │           └───refint
+│       ├───Debug
+│       │   └───net7.0
+│       │       ├───ref
+│       │       └───refint
+│       ├───Win32
+│       │   ├───Debug
+│       │   │   └───net7.0
+│       │   │       ├───ref
+│       │   │       └───refint
+│       │   └───Release
+│       │       └───net7.0
+│       │           ├───ref
+│       │           └───refint
+│       ├───x64
+│       │   ├───Debug
+│       │   │   └───net7.0
+│       │   │       ├───ref
+│       │   │       └───refint
+│       │   └───Release
+│       │       └───net7.0
+│       │           ├───ref
+│       │           └───refint
+│       └───x86
+│           ├───Debug
+│           │   └───net7.0
+│           │       ├───ref
+│           │       └───refint
+│           └───Release
+│               └───net7.0
+│                   ├───ref
+│                   └───refint
+└───TTS-GUI
+    └───TTS-GUI
+        ├───bin
+        │   ├───Debug
+        │   └───Release
+        ├───obj
+        │   └───Debug
+        │       └───TempPE
+        └───Properties
