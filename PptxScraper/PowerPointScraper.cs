@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PowerPointScraper.cs" company="" author=Thaddeus Thomas>
-//   
+// <copyright file="PowerPointScraper.cs" company="ThadsSoftwareDesigns" author="Thaddeus Thomas">
+//
 // Date:        20230327
 // Project:     TextToSpeech
 // Solution     TTS-Solution
@@ -11,9 +11,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-
 namespace PptxScraper
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using DocumentFormat.OpenXml.Packaging;
     using DocumentFormat.OpenXml.Presentation;
 
@@ -40,7 +41,7 @@ namespace PptxScraper
                 PresentationPart presentationPart = presentationDocument.PresentationPart;
 
                 if (presentationPart == null) return textList;
-                foreach (SlideId slideId in presentationPart.Presentation.SlideIdList)
+                foreach (SlideId slideId in presentationPart.Presentation.SlideIdList.OfType<SlideId>())
                 {
                     SlidePart slidePart = (SlidePart)presentationPart.GetPartById(slideId.RelationshipId);
                     if (slidePart == null) continue;

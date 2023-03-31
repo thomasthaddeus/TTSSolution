@@ -11,7 +11,10 @@
 namespace TextToSpeech
 {
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
 
+    using Azure.Identity;
+    using Azure.Security.KeyVault.Secrets;
     using Microsoft.CognitiveServices.Speech;
     using Microsoft.CognitiveServices.Speech.Audio;
 
@@ -62,10 +65,18 @@ namespace TextToSpeech
             }
         }
 
+        public static async Task<string> GetSecretFromKeyVaultAsync(string keyVaultUrl, string secretName)
+        {
+            var client = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential());
+            var secretResponse = await client.GetSecretAsync(secretName);
+            return secretResponse.Value.Value;
+        }
+
         /// <summary>
-        /// 
+        /// Synthesizes speech for output
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The wav file of the audio</returns>
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
         public static async Task SynthesizeAudioAsync()
         {
             var speechConfig = SpeechConfig.FromSubscription(spKey, spRegion);
@@ -75,7 +86,7 @@ namespace TextToSpeech
             var result = await speechSynthesizer.SpeakTextAsync("I'm excited to try text-to-speech");
 
             using var stream = AudioDataStream.FromResult(result);
-            await stream.SaveToWaveFileAsync("path/to/write/file.wav");
+            await stream.SaveToWaveFileAsync($"%Documents%/PptxAudioFiles/audio_file.wav");
         }
 
 
