@@ -36,7 +36,7 @@ namespace Tests
             string filePath = @"path\to\your\powerpoint.pptx";
 
             // Act
-            var extractedText = scraper.ExtractTextFromPresentation(filePath);
+            var extractedText = PowerPointScraper.ExtractTextFromPresentation(filePath);
 
             // Assert
             Assert.IsNotNull(extractedText);

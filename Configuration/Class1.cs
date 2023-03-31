@@ -9,6 +9,8 @@
 
 namespace Configuration
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using Microsoft.Extensions.Configuration;
 
     /// <summary>
@@ -27,6 +29,7 @@ namespace Configuration
         /// <param name="configurationFilePath">
         /// The configuration file path.
         /// </param>
+        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1101:PrefixLocalCallsWithThis", Justification = "Reviewed. Suppression is OK here.")]
         public AppSettings(string configurationFilePath)
         {
             _configuration = new ConfigurationBuilder()
