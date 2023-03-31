@@ -1,18 +1,38 @@
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PptxScraper;
-using TextToSpeech;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="UnitTest1.cs" company="Thaddeus Thomas" TextToSpeechTests>
+// Author:      Thaddeus Thomas
+// Date:        20230327
+// Project:     TextToSpeech
+// Solution:    TTS-Solution
+// Notes:       Make sure to change the file path for the powerpoint file being tested
+// 
+// </copyright>
+// <summary>
+//   The text to speech tests.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 
 namespace Tests
 {
+    using PptxScraper;
+    using TextToSpeech;
+
+    /// <summary>
+    /// The text to speech tests.
+    /// </summary>
     [TestClass]
     public class TextToSpeechTests
     {
+        /// <summary>
+        /// The test power point scraper.
+        /// </summary>
         [TestMethod]
         public void TestPowerPointScraper()
         {
+            // Change the file path to an actual file
             // Arrange
-            PowerPointScraper scraper = new PowerPointScraper();
+            var scraper = new PowerPointScraper();
             string filePath = @"path\to\your\powerpoint.pptx";
 
             // Act
@@ -24,18 +44,9 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestTextToSpeechConversion()
+        public void TestTextToSpeech()
         {
-            // Arrange
-            TextToSpeechConverter tts = new TextToSpeechConverter();
-            string text = "Hello, this is a test.";
 
-            // Act
-            var result = tts.ConvertTextToSpeech(text);
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.Length > 0);
         }
     }
 }

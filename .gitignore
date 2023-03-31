@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/TextToSpeech/Properties/ServiceDependencies/local/secrets1.arm.json
+/TextToSpeech/Properties/serviceDependencies.json

@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PptxScraper\PptxScraper.csproj" />
+    <ProjectReference Include="..\TextToSpeech\TextToSpeech.csproj" />
+  </ItemGroup>
+
 </Project>

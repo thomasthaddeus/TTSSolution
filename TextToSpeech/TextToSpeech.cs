@@ -8,33 +8,106 @@
  *
  */
 
-using Microsoft.CognitiveServices.Speech;
-using Microsoft.CognitiveServices.Speech.Audio;
-
 namespace TextToSpeech
 {
-    public class SpeechSynthesizer
-    {
-        private readonly string SP_KEY;
-        private readonly string SP_REG;
+    using System.Diagnostics;
 
-        public SpeechSynthesizer(string subscriptionKey, string region)
+    using Microsoft.CognitiveServices.Speech;
+    using Microsoft.CognitiveServices.Speech.Audio;
+
+    /// <summary>
+    /// The tts.
+    /// </summary>
+    public class TTS
+    {
+        /// <summary>
+        /// This example requires environment variables named "spKey"
+        /// </summary>
+        private static string spKey = Environment.GetEnvironmentVariable("spKey");
+
+        /// <summary>
+        /// Environment variable "spRegion"
+        /// </summary>
+        private static string spRegion = Environment.GetEnvironmentVariable("spRegion");
+
+        /// <summary>
+        /// The output speech synthesis result.
+        /// </summary>
+        /// <param name="speechSynthesisResult">
+        /// The speech synthesis result.
+        /// </param>
+        /// <param name="text">
+        /// The text.
+        /// </param>
+        public static void OutputSpeechSynthesisResult(SpeechSynthesisResult speechSynthesisResult, string text)
         {
-            SP_KEY = subscriptionKey;
-            SP_REG = region;
+            switch (speechSynthesisResult.Reason)
+            {
+                case ResultReason.SynthesizingAudioCompleted:
+                    Console.WriteLine($"Speech synthesized for text: [{text}]");
+                    break;
+                case ResultReason.Canceled:
+                    var cancellation = SpeechSynthesisCancellationDetails.FromResult(speechSynthesisResult);
+                    Console.WriteLine($"CANCELED: Reason={cancellation.Reason}");
+                    if (cancellation.Reason == CancellationReason.Error)
+                    {
+                        Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
+                        Console.WriteLine($"CANCELED: ErrorDetails=[{cancellation.ErrorDetails}]");
+                        Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+                    }
+
+                    break;
+                default:
+                    break;
+            }
         }
 
-        public async Task SynthesizeTextToSpeechAsync(string text, string outputFilePath)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static async Task SynthesizeAudioAsync()
         {
-            var config = SpeechConfig.FromSubscription(SP_KEY, SP_REG);
-            using var audioConfig = AudioConfig.FromWavFileOutput(outputFilePath);
-            using var synthesizer = new SpeechSynthesizer(config, audioConfig);
+            var speechConfig = SpeechConfig.FromSubscription(spKey, spRegion);
+            speechConfig.SetSpeechSynthesisOutputFormat(SpeechSynthesisOutputFormat.Riff24Khz16BitMonoPcm);
 
-            var result = await synthesizer.SpeakTextAsync(text);
-            if (result.Reason != ResultReason.SynthesizingAudioCompleted)
+            using var speechSynthesizer = new SpeechSynthesizer(speechConfig, null);
+            var result = await speechSynthesizer.SpeakTextAsync("I'm excited to try text-to-speech");
+
+            using var stream = AudioDataStream.FromResult(result);
+            await stream.SaveToWaveFileAsync("path/to/write/file.wav");
+        }
+
+
+        /// <summary>
+        /// The main method of the class
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public static async Task Main()
+        {
+            var speechConfig = SpeechConfig.FromSubscription(spKey, spRegion);      
+
+            // The language of the voice that speaks.
+            speechConfig.SpeechSynthesisVoiceName = "en-US-JennyNeural"; 
+
+            using (var speechSynthesizer = new SpeechSynthesizer(speechConfig))
             {
-                throw new InvalidOperationException($"TTS failed: {result.ErrorDetails}");
+                // Get text from the console and synthesize to the default speaker.
+                Console.WriteLine("Enter some text that you want to speak >");
+                var inputText = Console.ReadLine() ?? throw new InvalidOperationException();
+
+                var speechSynthesisResult = await speechSynthesizer.SpeakTextAsync(inputText);
+                Debug.Assert(inputText != null, nameof(inputText) + " != null");
+                OutputSpeechSynthesisResult(speechSynthesisResult, inputText);
             }
+
+            // Call the SynthesizeAudioAsync method to create an audio file.
+            await SynthesizeAudioAsync();
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
     }
 }
