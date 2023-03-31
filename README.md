@@ -7,6 +7,28 @@ Date:           2023-03-27
 Project:        Text-To-Voice
 Cloud:          Azure
 
+- [Text-To-Voice](#text-to-voice)
+  - [Initial Setup Implementation](#initial-setup-implementation)
+    - [Additional Requirements](#additional-requirements)
+    - [Documentation](#documentation)
+    - [Finalize your application](#finalize-your-application)
+    - [Configuration](#configuration)
+    - [Bundle libraries and dependencies](#bundle-libraries-and-dependencies)
+    - [Create an executable](#create-an-executable)
+    - [Create an installer](#create-an-installer)
+    - [User prompts for configuration](#user-prompts-for-configuration)
+    - [Testing](#testing)
+  - [Defining the Structure](#defining-the-structure)
+    - [Tree Structure](#tree-structure)
+  - [Estimated Size](#estimated-size)
+  - [C# Vs. Python](#c-vs-python)
+    - [Python for .NET (Pythonnet)](#python-for-net-pythonnet)
+    - [IronPython](#ironpython)
+    - [Performance](#performance)
+    - [Dependency management](#dependency-management)
+    - [Debugging](#debugging)
+  - [PowerPointScraper](#powerpointscraper)
+
 ## Initial Setup Implementation
 
 I need to create an application in C# using multiple projects.
