@@ -9,19 +9,19 @@ namespace Configuration
         public AppSettings(string configurationFilePath)
         {
             _configuration = new ConfigurationBuilder()
-                .SetBasePath(Path.GetDirectoryName(configurationFilePath))
-                .AddJsonFile(Path.GetFileName(configurationFilePath))
+                .SetBasePath(basePath: Path.GetDirectoryName(path: configurationFilePath))
+                .AddJsonFile(path: Path.GetFileName(path: configurationFilePath))
                 .Build();
         }
 
         public string GetCognitiveServicesSubscriptionKey()
         {
-            return _configuration["CognitiveServices:SubscriptionKey"];
+            return _configuration[key: "CognitiveServices:SubscriptionKey"];
         }
 
         public string GetCognitiveServicesRegion()
         {
-            return _configuration["CognitiveServices:Region"];
+            return _configuration[key: "CognitiveServices:Region"];
         }
 
         // Add more methods here to get other configuration settings as needed

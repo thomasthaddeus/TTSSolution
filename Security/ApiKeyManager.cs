@@ -15,17 +15,17 @@ namespace Security
         public string GenerateApiKey()
         {
             var apiKey = Guid.NewGuid().ToString();
-            _apiKeys[apiKey] = DateTime.UtcNow;
+            _apiKeys[key: apiKey] = DateTime.UtcNow;
 
             return apiKey;
         }
 
         public bool IsValidApiKey(string apiKey)
         {
-            if (_apiKeys.TryGetValue(apiKey, out var creationDate))
+            if (_apiKeys.TryGetValue(key: apiKey, value: out var creationDate))
             {
                 TimeSpan age = DateTime.UtcNow - creationDate;
-                if (age < TimeSpan.FromDays(30)) // Assuming the API key is valid for 30 days
+                if (age < TimeSpan.FromDays(value: 30)) // Assuming the API key is valid for 30 days
                 {
                     return true;
                 }
@@ -36,7 +36,7 @@ namespace Security
 
         public void RevokeApiKey(string apiKey)
         {
-            _apiKeys.Remove(apiKey);
+            _apiKeys.Remove(key: apiKey);
         }
     }
 }
