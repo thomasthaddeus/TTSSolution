@@ -1,10 +1,9 @@
 # Text-To-Voice
 
-Redux:          #11
-Author:         Thaddeus Thomas
-Author:         Shelby Lynch
-Date:           2023-03-27
-Project:        Text-To-Voice
+Redux:          #11 \
+Author:         Thaddeus Thomas \
+Date:           2023-03-27 \
+Project:        Text-To-Voice \
 Cloud:          Azure
 
 - [Text-To-Voice](#text-to-voice)
@@ -31,8 +30,6 @@ Cloud:          Azure
 
 ## Initial Setup Implementation
 
-I need to create an application in C# using multiple projects.
-
 1. A project called TextToSpeech,
 2. A project called PptxScraper:
     - Scrapes the text in the notes of a PowerPoint presentation or on the slides or both,
@@ -47,10 +44,8 @@ My first question is am I missing anything for project files? Such as static fil
 
 ---
 
-Your initial application design seems to cover most of the main aspects of the project. However, I'll suggest a few more considerations to ensure a well-rounded design:
-
 1. Configuration
-   - You might want to include a project or folder for configuration files, where you can store settings related to the application, such as API keys, paths to neural voice models, or any other configuration information.
+   - Include a project or folder for configuration files, where you can store settings related to the application, such as API keys, paths to neural voice models, or any other configuration information.
 2. Libraries and dependencies
    - Ensure you have the necessary external libraries and NuGet packages for each project. For instance, you'll likely need a library to interact with PowerPoint files (e.g., GemBox.Presentation) for the PptxScraper project and a Text-to-Speech library (e.g., Microsoft.CognitiveServices.Speech) for the TextToSpeech project.
 3. Common Utilities
@@ -62,20 +57,23 @@ Your initial application design seems to cover most of the main aspects of the p
 
 ### Documentation
 
-Don't forget to include proper documentation for each project, such as README files, inline code comments, and XML documentation for public APIs.
+1. Include proper documentation for each project.
+    - README files
+    - Inline code comments
+    - XML documentation for public APIs
 
-To sum up, your initial application design is good, but you should consider including configuration, libraries and dependencies, common utilities, logging and error handling, security and authentication, and documentation for a more comprehensive design.
+Needs documentation of the configuration, libraries and dependencies, common utilities, logging and error handling, security and authentication, and documentation for a more comprehensive design.
 
-My goal for this project is to have an executable that could be installed by a user with the only need they would have for installation to be inputting the cognitive services endpoint or key
-To achieve this goal, you'll need to create an installer for your application that takes care of bundling all the necessary components and simplifying the installation process for the end-user. Here's an outline of the steps you can follow:
+My goal for this project is to have an executable that could be installed by a user with the only need they would have for installation to be inputting the cognitive services endpoint or key.
 
-### Finalize your application
+### Finalize Application
 
-Complete the development and testing of your application, ensuring all projects are working as expected.
+Complete the development and testing of application, ensuring all projects are working as expected.
 
 ### Configuration
 
-Make sure the application's configuration settings (e.g., Cognitive Services endpoint or key) can be easily updated by the end-user. One approach is to store these settings in an appsettings.json file, which can be modified post-installation.
+Make sure the application's configuration settings (e.g., Cognitive Services endpoint or key) can be easily updated by the end-user.
+One approach is to store these settings in an `appsettings.json` file, which can be modified post-installation.
 
 ### Bundle libraries and dependencies
 
@@ -100,22 +98,24 @@ Test the installer on different Windows versions and configurations to ensure th
 By following these steps, you'll be able to create an installer for your application that can be easily installed by the end-user. They will only need to input the required Cognitive Services endpoint or key during the installation process, and your application should work seamlessly.
 
 ## Defining the Structure
+    
+This structure allows for more modular code organization, which should make it easier to debug, maintain, and expand the application. \
+Each project can be focused on a specific aspect of the application, reducing complexity and improving code readability.
 
-**TextToSpeech**: Handles the text-to-speech functionality.
-**PptxScraper**: Scrapes the text from PowerPoint presentations.
-**ExpansionScraper**: Future implementation for other data types.
-**Tests**: Standard C# tests project.
-**TTS-GUI**: The main GUI project that holds the solution file.
-**Configuration**: Handles configuration files and settings.
-**CommonUtilities**: A project for shared utility classes and functions.
-**Logging**: Handles logging and error handling for the application.
-**Security**: If required, you can create a separate project to handle security and authentication.
-**DataModels**: You can create a separate project to define the data models and entities used in your application.
-This structure, with a total of 8 to 10 projects, allows for more modular code organization, which should make it easier to debug, maintain, and expand your application. Each project can be focused on a specific aspect of the application, reducing complexity and improving code readability.
+1. **TextToSpeech**: Handles the text-to-speech functionality.
+1. **PptxScraper**: Scrapes the text from PowerPoint presentations.
+1. **ExpansionScraper**: Future implementation for other data types.
+1. **Tests**: Standard C# tests project.
+1. **TTS-GUI**: The main GUI project that holds the solution file.
+1. **Configuration**: Handles configuration files and settings.
+1. **CommonUtilities**: A project for shared utility classes and functions.
+1. **Logging**: Handles logging and error handling for the application.
+1. **Security**: If required, you can create a separate project to handle security and authentication.
+1. **DataModels**: You can create a separate project to define the data models and entities used in your application.
 
 ### Tree Structure
 
-Folder structure to a depth of 3 from the solution file folder
+Folder structure to a depth of 3 from the solution file folder 
 
 ```arduino
 TTS-Solution
@@ -161,7 +161,7 @@ TTS-Solution
     └───Models
 ```
 
-This structure includes folders for each project, with a "Properties" and "Services" (or other relevant) folder inside each project. You can further expand and customize the folder structure based on the specific requirements and organization of your application.
+This structure includes folders for each project, with a "Properties" and "Services" (or other relevant) folder inside each project.
 
 ## Estimated Size
 
