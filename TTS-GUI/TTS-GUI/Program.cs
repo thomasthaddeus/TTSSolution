@@ -15,8 +15,8 @@ namespace TTS_GUI
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.SetCompatibleTextRenderingDefault(defaultValue: false);
+            Application.Run(mainForm: new Form1());
         }
     }
 }

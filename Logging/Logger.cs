@@ -1,61 +1,99 @@
-﻿/*
- *  Author:     Thaddeus Thomas
- *  Date:       20230328
- *  Project:    Logging
- *  Solution:   TextToSpeech
- *  
- *  Notes:
- *  
- */
-
-using NLog;
-using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Logger.cs" author="Thaddeus Thomas">
+//  
+//  Date:       20230328
+//  Project:    Logging
+//  Solution:   TextToSpeech
+//  Notes:
+//
+// </copyright>
+// <summary>
+//   The logger.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Logging
 {
+    using System;
+
+    using NLog;
+
+    /// <summary>
+    ///     The logger.
+    /// </summary>
     public static class Logger
     {
-        // Create an instance of NLog logger
-        private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
+        /// <summary>
+        ///     The _logger.
+        ///     Create an instance of NLog logger
+        /// </summary>
+        private static readonly ILogger Logged = LogManager.GetCurrentClassLogger();
 
-        // Log a Debug level message
-        public static void Debug(string message){
-            _logger.Debug(message);
+        /// <summary>
+        ///     The debug.
+        /// </summary>
+        /// <param name="message">
+        ///     Log a Debug level message
+        /// </param>
+        public static void Debug(string message)
+        {
+            Logged.Debug(message);
         }
 
-        // Log an Error level message
-        public static void Error(string message){
-            _logger.Error(message);
+        /// <summary>
+        ///     The error.
+        /// </summary>
+        /// <param name="message">
+        ///     Log an Error level message
+        /// </param>
+        public static void Error(string message)
+        {
+            Logged.Error(message: message);
         }
 
-        // Log an Error level message with an associated exception
-        public static void Error(Exception ex, string message){
-            _logger.Error(ex, message);
+        /// <summary>
+        ///     The fatal.
+        /// </summary>
+        /// <param name="message">
+        ///     Log a Fatal level message
+        /// </param>
+        public static void Fatal(string message)
+        {
+            Logged.Fatal(message: message);
         }
 
-        // Log a Fatal level message
-        public static void Fatal(string message){
-            _logger.Fatal(message);
+        /// <summary>
+        ///     The info.
+        /// </summary>
+        /// <param name="message">
+        ///     Log an Info level message
+        ///     The message.
+        /// </param>
+        public static void Info(string message)
+        {
+            Logged.Info(message: message);
         }
 
-        // Log a Fatal level message with an associated exception
-        public static void Fatal(Exception ex, string message){
-            _logger.Fatal(ex, message);
+        /// <summary>
+        ///     The trace.
+        /// </summary>
+        /// <param name="message">
+        ///     Log a Trace level message
+        /// </param>
+        public static void Trace(string message)
+        {
+            Logged.Trace(message: message);
         }
 
-        // Log an Info level message
-        public static void Info(string message){
-            _logger.Info(message);
-        }
-
-        // Log a Trace level message
-        public static void Trace(string message){
-            _logger.Trace(message);
-        }
-
-        // Log a Warn level message
-        public static void Warn(string message){
-            _logger.Warn(message);
+        /// <summary>
+        ///     The warn.
+        /// </summary>
+        /// <param name="message">
+        ///     Log a Warn level message
+        /// </param>
+        public static void Warn(string message)
+        {
+            Logged.Warn(message: message);
         }
     }
 }
