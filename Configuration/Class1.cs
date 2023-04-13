@@ -10,7 +10,6 @@
 namespace Configuration
 {
     using System.Diagnostics.CodeAnalysis;
-
     using Microsoft.Extensions.Configuration;
 
     /// <summary>
@@ -33,7 +32,7 @@ namespace Configuration
         public AppSettings(string configurationFilePath)
         {
             _configuration = new ConfigurationBuilder()
-                .SetBasePath(basePath: Path.GetDirectoryName(path: configurationFilePath))
+                .SetBasePath(basePath: Path.GetDirectoryName(path: configurationFilePath) ?? throw new InvalidOperationException())
                 .AddJsonFile(path: Path.GetFileName(path: configurationFilePath))
                 .Build();
         }

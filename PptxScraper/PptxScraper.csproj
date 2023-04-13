@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -8,6 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.19.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="PowerPointScraper.cs">
+      <Generator>PowerPointScraper</Generator>
+      <CustomToolNamespace>PptxScraper</CustomToolNamespace>
+    </Compile>
   </ItemGroup>
 
 </Project>
