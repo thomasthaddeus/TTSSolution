@@ -30,15 +30,15 @@ namespace PptxScraper
         /// The file path.
         /// </param>
         /// <returns>
-        /// The <see cref="IList"/>.
+        /// The <see cref="IList{T}"/>.
         /// </returns>
-        public IList<string> ExtractTextFromPresentation(string filePath)
+        public static IList<string> ExtractTextFromPresentation(string filePath)
         {
             var textList = new List<string>();
 
             using (PresentationDocument presentationDocument = PresentationDocument.Open(filePath, false))
             {
-                PresentationPart presentationPart = presentationDocument.PresentationPart;
+                var presentationPart = presentationDocument.PresentationPart;
 
                 if (presentationPart == null) return textList;
                 foreach (SlideId slideId in presentationPart.Presentation.SlideIdList.OfType<SlideId>())

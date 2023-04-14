@@ -14,4 +14,11 @@
     <PackageReference Include="System.Speech" Version="8.0.0-preview.2.23128.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="TextToSpeech.cs">
+      <Generator>TextToSp</Generator>
+      <CustomToolNamespace>TextToSpeech</CustomToolNamespace>
+    </Compile>
+  </ItemGroup>
+
 </Project>

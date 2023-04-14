@@ -21,17 +21,17 @@ namespace TextToSpeech
     /// <summary>
     /// The tts.
     /// </summary>
-    public class TTS
+    public class TextToSp
     {
         /// <summary>
         /// This example requires environment variables named "spKey"
         /// </summary>
-        private static string spKey = Environment.GetEnvironmentVariable("spKey");
+        private static string? spKey = Environment.GetEnvironmentVariable("spKey");
 
         /// <summary>
         /// Environment variable "spRegion"
         /// </summary>
-        private static string spRegion = Environment.GetEnvironmentVariable("spRegion");
+        private static string? spRegion = Environment.GetEnvironmentVariable("spRegion");
 
         /// <summary>
         /// The output speech synthesis result.
@@ -42,7 +42,7 @@ namespace TextToSpeech
         /// <param name="text">
         /// The text.
         /// </param>
-        public static void OutputSpeechSynthesisResult(SpeechSynthesisResult speechSynthesisResult, string text)
+        private static void OutputSpeechSynthesisResult(SpeechSynthesisResult speechSynthesisResult, string text)
         {
             switch (speechSynthesisResult.Reason)
             {
@@ -65,7 +65,7 @@ namespace TextToSpeech
             }
         }
 
-        public static async Task<string> GetSecretFromKeyVaultAsync(string keyVaultUrl, string secretName)
+        private static async Task<string?> GetSecretFromKeyVaultAsync(string keyVaultUrl, string secretName)
         {
             var client = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential());
             var secretResponse = await client.GetSecretAsync(secretName);
@@ -98,6 +98,13 @@ namespace TextToSpeech
         /// </returns>
         public static async Task Main()
         {
+            // Replace with the URL of your Azure Key Vault instance.
+            string keyVaultUrl = "https://voiceresource.vault.azure.net/";
+
+            // Retrieve the secrets from Azure Key Vault.
+            spKey = await GetSecretFromKeyVaultAsync(keyVaultUrl, "spKey");
+            spRegion = await GetSecretFromKeyVaultAsync(keyVaultUrl, "spRegion");
+
             var speechConfig = SpeechConfig.FromSubscription(spKey, spRegion);      
 
             // The language of the voice that speaks.
