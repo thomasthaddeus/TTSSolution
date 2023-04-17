@@ -37,18 +37,19 @@ namespace Configuration
                 .Build();
         }
 
+
         /// <summary>
         /// The get cognitive services subscription key.
         /// </summary>
         /// <returns>
         /// The <see cref="string"/>.
         /// </returns>
-        public string GetCognitiveServicesSubscriptionKey()
+        public string? GetCognitiveServicesSubscriptionKey()
         {
             return _configuration[key: "CognitiveServices:SubscriptionKey"];
         }
 
-        public string GetCognitiveServicesRegion()
+        public string? GetCognitiveServicesRegion()
         {
             return _configuration[key: "CognitiveServices:Region"];
         }

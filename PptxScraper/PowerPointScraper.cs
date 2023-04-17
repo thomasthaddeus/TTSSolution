@@ -11,6 +11,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace PptxScraper
 {
     using System.Collections.Generic;
@@ -36,17 +38,31 @@ namespace PptxScraper
         {
             var textList = new List<string>();
 
-            using (PresentationDocument presentationDocument = PresentationDocument.Open(filePath, false))
-            {
-                var presentationPart = presentationDocument.PresentationPart;
+            using var presentationDocument = PresentationDocument.Open(filePath, false);
+            var presentationPart = presentationDocument?.PresentationPart;
 
-                if (presentationPart == null) return textList;
-                foreach (SlideId slideId in presentationPart.Presentation.SlideIdList.OfType<SlideId>())
-                {
-                    SlidePart slidePart = (SlidePart)presentationPart.GetPartById(slideId.RelationshipId);
-                    if (slidePart == null) continue;
-                    textList.AddRange(from shape in slidePart.Slide.Descendants<Shape>() where shape.TextBody != null from paragraph in shape.TextBody.Descendants<DocumentFormat.OpenXml.Drawing.Paragraph>() select paragraph.InnerText into text where !string.IsNullOrWhiteSpace(text) select text);
-                }
+            if (presentationPart == null) return textList;
+
+            var slideIds = presentationPart.Presentation?.SlideIdList?.OfType<SlideId>();
+
+            if (slideIds == null) return textList;
+
+            foreach (var slideId in slideIds)
+            {
+                Debug.Assert(slideId != null, nameof(slideId) + " != null");
+                string? relationshipId = slideId.RelationshipId;
+
+                if (string.IsNullOrEmpty(relationshipId)) continue;
+
+                OpenXmlPart? slidePart = presentationPart.GetPartById(relationshipId);
+                if (slidePart is not SlidePart sp || sp.Slide == null) continue;
+
+                textList.AddRange(from shape in sp.Slide.Descendants<Shape>() ?? Enumerable.Empty<Shape>()
+                    where shape.TextBody != null
+                    from paragraph in shape.TextBody.Descendants<DocumentFormat.OpenXml.Drawing.Paragraph>()
+                    select paragraph.InnerText into text
+                    where !string.IsNullOrWhiteSpace(text)
+                    select text);
             }
 
             return textList;

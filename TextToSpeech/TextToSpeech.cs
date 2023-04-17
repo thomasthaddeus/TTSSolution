@@ -16,7 +16,6 @@ namespace TextToSpeech
     using Azure.Identity;
     using Azure.Security.KeyVault.Secrets;
     using Microsoft.CognitiveServices.Speech;
-    using Microsoft.CognitiveServices.Speech.Audio;
 
     /// <summary>
     /// The tts.
@@ -59,8 +58,6 @@ namespace TextToSpeech
                         Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
                     }
 
-                    break;
-                default:
                     break;
             }
         }
