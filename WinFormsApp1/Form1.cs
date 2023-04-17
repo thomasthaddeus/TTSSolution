@@ -11,12 +11,18 @@ using Logging;
 
 namespace WinFormsApp1
 {
+    /// <summary>
+    /// Represents the main form of the application.
+    /// </summary>
     public partial class Form1 : Form
     {
         private string? filePath;
         private string? outputFolderPath;
         private string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "log.txt"); // Set this to your existing log file path
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Form1"/> class.
+        /// </summary>
         public Form1() => InitializeComponent();
 
         private void OpenFileDialog1_FileOk(
