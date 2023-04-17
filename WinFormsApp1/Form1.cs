@@ -17,10 +17,7 @@ namespace WinFormsApp1
         private string? outputFolderPath;
         private string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "log.txt"); // Set this to your existing log file path
 
-        public Form1()
-        {
-            InitializeComponent();
-        }
+        public Form1() => InitializeComponent();
 
         private void OpenFileDialog1_FileOk(
             object sender,

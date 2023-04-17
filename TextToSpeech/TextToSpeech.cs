@@ -93,7 +93,7 @@ namespace TextToSpeech
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public static async Task Main()
+        public static async Task Master()
         {
             // Replace with the URL of your Azure Key Vault instance.
             string keyVaultUrl = "https://voiceresource.vault.azure.net/";

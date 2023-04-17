@@ -46,11 +46,11 @@ namespace WinFormsApp1
             folderBrowserDialog1 = new FolderBrowserDialog();
             tableLayoutPanel1 = new TableLayoutPanel();
             button1 = new Button();
+            textBox1 = new TextBox();
             openFileDialog1 = new OpenFileDialog();
             saveFileDialog1 = new SaveFileDialog();
             folderBrowserDialog2 = new FolderBrowserDialog();
             textBoxLogs = new RichTextBox();
-            textBox1 = new TextBox();
             menuStrip1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -105,28 +105,40 @@ namespace WinFormsApp1
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17.50547F));
-            tableLayoutPanel1.Controls.Add(button1, 0, 1);
+            tableLayoutPanel1.AllowDrop = true;
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Controls.Add(textBox1, 0, 0);
-            tableLayoutPanel1.Location = new Point(0, 27);
+            tableLayoutPanel1.Controls.Add(button1, 1, 0);
+            tableLayoutPanel1.Dock = DockStyle.Top;
+            tableLayoutPanel1.Location = new Point(0, 24);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 80.625F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 19.375F));
-            tableLayoutPanel1.Size = new Size(723, 160);
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new Size(723, 30);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button1.AutoSize = true;
-            button1.Location = new Point(3, 132);
+            button1.Location = new Point(646, 3);
             button1.Name = "button1";
-            button1.Size = new Size(74, 25);
+            button1.Size = new Size(74, 24);
             button1.TabIndex = 0;
             button1.Text = "Execute";
             button1.UseVisualStyleBackColor = true;
             button1.Click += Button1_Click;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(3, 3);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(607, 23);
+            textBox1.TabIndex = 1;
+            textBox1.TextChanged += TextBox1_TextChanged;
             // 
             // openFileDialog1
             // 
@@ -135,25 +147,18 @@ namespace WinFormsApp1
             // 
             // textBoxLogs
             // 
-            textBoxLogs.Location = new Point(0, 190);
+            textBoxLogs.Dock = DockStyle.Fill;
+            textBoxLogs.Location = new Point(0, 54);
             textBoxLogs.Name = "textBoxLogs";
-            textBoxLogs.Size = new Size(723, 183);
+            textBoxLogs.Size = new Size(723, 198);
             textBoxLogs.TabIndex = 1;
             textBoxLogs.Text = "";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(3, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 1;
-            textBox1.TextChanged += TextBox1_TextChanged;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(723, 372);
+            ClientSize = new Size(723, 252);
             Controls.Add(textBoxLogs);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(menuStrip1);
