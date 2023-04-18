@@ -5,18 +5,16 @@
 // Project:     TextToSpeech
 // Solution:    TTS-Solution
 // Notes:       Make sure to change the file path for the powerpoint file being tested
-// 
+//
 // </copyright>
 // <summary>
 //   The text to speech tests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-
 namespace Tests
 {
     using PptxScraper;
-    using TextToSpeech;
 
     /// <summary>
     /// The text to speech tests.
@@ -45,7 +43,6 @@ namespace Tests
         [TestMethod]
         public void TestTextToSpeech()
         {
-
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Logger.cs" author="Thaddeus Thomas">
-//  
+//
 //  Date:       20230328
 //  Project:    Logging
 //  Solution:   TextToSpeech
@@ -14,8 +14,6 @@
 
 namespace Logging
 {
-    using System;
-
     using NLog;
 
     /// <summary>

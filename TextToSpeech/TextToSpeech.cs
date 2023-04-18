@@ -10,12 +10,11 @@
 
 namespace TextToSpeech
 {
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
-
     using Azure.Identity;
     using Azure.Security.KeyVault.Secrets;
     using Microsoft.CognitiveServices.Speech;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// The tts.
@@ -48,6 +47,7 @@ namespace TextToSpeech
                 case ResultReason.SynthesizingAudioCompleted:
                     Console.WriteLine($"Speech synthesized for text: [{text}]");
                     break;
+
                 case ResultReason.Canceled:
                     var cancellation = SpeechSynthesisCancellationDetails.FromResult(speechSynthesisResult);
                     Console.WriteLine($"CANCELED: Reason={cancellation.Reason}");
@@ -86,7 +86,6 @@ namespace TextToSpeech
             await stream.SaveToWaveFileAsync($"%Documents%/PptxAudioFiles/audio_file.wav");
         }
 
-
         /// <summary>
         /// The main method of the class
         /// </summary>
@@ -102,10 +101,10 @@ namespace TextToSpeech
             spKey = await GetSecretFromKeyVaultAsync(keyVaultUrl, "spKey");
             spRegion = await GetSecretFromKeyVaultAsync(keyVaultUrl, "spRegion");
 
-            var speechConfig = SpeechConfig.FromSubscription(spKey, spRegion);      
+            var speechConfig = SpeechConfig.FromSubscription(spKey, spRegion);
 
             // The language of the voice that speaks.
-            speechConfig.SpeechSynthesisVoiceName = "en-US-JennyNeural"; 
+            speechConfig.SpeechSynthesisVoiceName = "en-US-JennyNeural";
 
             using (var speechSynthesizer = new SpeechSynthesizer(speechConfig))
             {

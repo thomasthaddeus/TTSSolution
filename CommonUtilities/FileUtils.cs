@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace CommonUtilities
+﻿namespace CommonUtilities
 {
     public static class FileUtils
     {

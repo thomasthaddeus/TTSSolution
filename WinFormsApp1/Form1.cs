@@ -2,10 +2,9 @@
  * Winforms Application For Text-To-Speech Application
  * Author: Thaddeus Thomas
  * Date:    April 17, 2023
- * 
- * 
+ *
+ *
  */
-
 
 using Logging;
 
@@ -102,7 +101,6 @@ namespace WinFormsApp1
             }
         }
 
-
         private void TextBox1_TextChanged(
             object sender,
             EventArgs e)
@@ -110,7 +108,6 @@ namespace WinFormsApp1
             // Update the outputFolderPath variable based on the new text in the textbox
             outputFolderPath = textBox1.Text;
         }
-
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {

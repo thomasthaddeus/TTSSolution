@@ -11,14 +11,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics;
-
 namespace PptxScraper
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using DocumentFormat.OpenXml.Packaging;
     using DocumentFormat.OpenXml.Presentation;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// The power point scraper.
@@ -57,11 +55,11 @@ namespace PptxScraper
                 if (slidePart is not SlidePart sp || sp.Slide == null) continue;
 
                 textList.AddRange(from shape in sp.Slide.Descendants<Shape>()
-                    where shape.TextBody != null
-                    from paragraph in shape.TextBody.Descendants<DocumentFormat.OpenXml.Drawing.Paragraph>()
-                    select paragraph.InnerText into text
-                    where !string.IsNullOrWhiteSpace(text)
-                    select text);
+                                  where shape.TextBody != null
+                                  from paragraph in shape.TextBody.Descendants<DocumentFormat.OpenXml.Drawing.Paragraph>()
+                                  select paragraph.InnerText into text
+                                  where !string.IsNullOrWhiteSpace(text)
+                                  select text);
             }
 
             return textList;
