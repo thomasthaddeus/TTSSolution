@@ -21,15 +21,9 @@ namespace TextToSpeech
     /// </summary>
     public class TextToSp
     {
-        /// <summary>
-        /// This example requires environment variables named "spKey"
-        /// </summary>
-        //private static string? spKey = Environment.GetEnvironmentVariable("spKey");
+        // https://westus.tts.speech.microsoft.com/cognitiveservices/voices/list
+        // USe to get the voices list
 
-        /// <summary>
-        /// Environment variable "spRegion"
-        /// </summary>
-        //private static string? spRegion = Environment.GetEnvironmentVariable("spRegion");
 
         /// <summary>
         /// The output speech synthesis result.
@@ -76,8 +70,7 @@ namespace TextToSpeech
         [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
         public static async Task SynthesizeAudioAsync()
         {
-            var speechConfig = SpeechConfig.FromSubscription();
-            speechConfig.SetSpeechSynthesisOutputFormat(SpeechSynthesisOutputFormat.Riff24Khz16BitMonoPcm);
+            speechConfig.SetSpeechSynthesisOutputFormat(SpeechSynthesisOutputFormat.Riff48Khz16BitMonoPcm);
 
             using var speechSynthesizer = new SpeechSynthesizer(speechConfig, null);
             var result = await speechSynthesizer.SpeakTextAsync("I'm excited to try text-to-speech");

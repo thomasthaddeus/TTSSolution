@@ -1,12 +1,12 @@
 /*
- * Winforms Application For Text-To-Speech Application
+ * Win forms Application For Text-To-Speech Application
  * Author: Thaddeus Thomas
  * Date:    April 17, 2023
- *
- *
+ * Issues:
+ * Description of methods and variables
  */
 
-using static Logging.Logger;
+using Logging.Logger;
 
 namespace WinFormsApp1
 {
@@ -66,7 +66,7 @@ namespace WinFormsApp1
             }
             else
             {
-                MessageBox.Show("Log file not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"Log file not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -97,7 +97,7 @@ namespace WinFormsApp1
             }
             else
             {
-                MessageBox.Show("Please select a file and an output folder before executing the command.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(@"Please select a file and an output folder before executing the command.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
