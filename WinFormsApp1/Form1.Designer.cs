@@ -43,10 +43,11 @@ namespace WinFormsApp1
             selectOutputFolderToolStripMenuItem = new ToolStripMenuItem();
             viewLogsToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
             folderBrowserDialog1 = new FolderBrowserDialog();
             tableLayoutPanel1 = new TableLayoutPanel();
-            button1 = new Button();
             textBox1 = new TextBox();
+            button1 = new Button();
             openFileDialog1 = new OpenFileDialog();
             saveFileDialog1 = new SaveFileDialog();
             folderBrowserDialog2 = new FolderBrowserDialog();
@@ -57,7 +58,7 @@ namespace WinFormsApp1
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripComboBox1, fileToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripComboBox1, fileToolStripMenuItem, aboutToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(723, 24);
@@ -103,6 +104,13 @@ namespace WinFormsApp1
             exitToolStripMenuItem.Size = new Size(182, 22);
             exitToolStripMenuItem.Text = "Exit";
             // 
+            // aboutToolStripMenuItem
+            // 
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.Size = new Size(52, 20);
+            aboutToolStripMenuItem.Text = "About";
+            aboutToolStripMenuItem.Click += AboutToolStripMenuItem_Click;
+            // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.AllowDrop = true;
@@ -120,6 +128,14 @@ namespace WinFormsApp1
             tableLayoutPanel1.Size = new Size(723, 30);
             tableLayoutPanel1.TabIndex = 1;
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(3, 3);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(607, 23);
+            textBox1.TabIndex = 1;
+            textBox1.TextChanged += TextBox1_TextChanged;
+            // 
             // button1
             // 
             button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -130,15 +146,6 @@ namespace WinFormsApp1
             button1.TabIndex = 0;
             button1.Text = "Execute";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += Button1_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(3, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(607, 23);
-            textBox1.TabIndex = 1;
-            textBox1.TextChanged += TextBox1_TextChanged;
             // 
             // openFileDialog1
             // 
@@ -226,5 +233,6 @@ namespace WinFormsApp1
         private RichTextBox textBoxLogs;
         private Button button1;
         private TextBox textBox1;
+        private ToolStripMenuItem aboutToolStripMenuItem;
     }
 }

@@ -7,9 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Azure.ResourceManager;
+using Azure.ResourceManager.Resources;
+
 namespace Configuration
 {
     using System.Diagnostics.CodeAnalysis;
+    using Azure.Identity;
     using Microsoft.Extensions.Configuration;
 
     /// <summary>
@@ -37,6 +41,30 @@ namespace Configuration
                 .Build();
         }
 
+        public async Task<string> CheckExists()
+        {
+            var client = new ArmClient(new DefaultAzureCredential());
+            var subscription = await client.GetDefaultSubscriptionAsync();
+            var resourceGroups = subscription.GetResourceGroups();
+            const string resourceGroupName = "myRgName";
+
+            bool exists = await resourceGroups.ExistsAsync(resourceGroupName);
+            
+            if (exists)
+            {
+                Console.WriteLine($"Resource Group {resourceGroupName} exists.");
+
+                // We can get the resource group now that we know it exists.
+                // This does introduce a small race condition where resource group could have been deleted between the check and the get.
+                await resourceGroups.GetAsync(resourceGroupName);
+            }
+            else
+            {
+                Console.WriteLine($"Resource Group {resourceGroupName} does not exist.");
+            }
+
+            return null;
+        }
 
         /// <summary>
         /// The get cognitive services subscription key.
@@ -46,12 +74,12 @@ namespace Configuration
         /// </returns>
         public string? GetCognitiveServicesSubscriptionKey()
         {
-            return _configuration[key: "CognitiveServices:SubscriptionKey"];
+            return _configuration["CognitiveServices:SubscriptionKey"];
         }
 
         public string? GetCognitiveServicesRegion()
         {
-            return _configuration[key: "CognitiveServices:Region"];
+            return _configuration["CognitiveServices:Region"];
         }
 
         // Add more methods here to get other configuration settings as needed

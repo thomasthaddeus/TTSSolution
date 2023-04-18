@@ -49,7 +49,6 @@ namespace PptxScraper
 
             foreach (var slideId in slideIds)
             {
-                Debug.Assert(slideId != null, nameof(slideId) + " != null");
                 string? relationshipId = slideId.RelationshipId;
 
                 if (string.IsNullOrEmpty(relationshipId)) continue;
@@ -57,7 +56,7 @@ namespace PptxScraper
                 OpenXmlPart? slidePart = presentationPart.GetPartById(relationshipId);
                 if (slidePart is not SlidePart sp || sp.Slide == null) continue;
 
-                textList.AddRange(from shape in sp.Slide.Descendants<Shape>() ?? Enumerable.Empty<Shape>()
+                textList.AddRange(from shape in sp.Slide.Descendants<Shape>()
                     where shape.TextBody != null
                     from paragraph in shape.TextBody.Descendants<DocumentFormat.OpenXml.Drawing.Paragraph>()
                     select paragraph.InnerText into text
