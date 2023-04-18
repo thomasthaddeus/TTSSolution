@@ -1,0 +1,44 @@
+name: Build and Deploy
+
+on:
+  workflow_dispatch:
+  #push:
+    #branches:
+     # - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET 7.0
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '7.0.100-preview.6.21355.2'
+      - name: Build
+        run: dotnet build --configuration Release
+      - name: Test
+        run: dotnet test
+
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: App
+          path: bin/Release/net7.0/publish/
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd /var/www/app
+            sudo systemctl stop app
+            rm -rf *
+            unzip -o ../app.zip -d .
+            sudo systemctl start app
