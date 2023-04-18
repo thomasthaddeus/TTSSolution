@@ -47,7 +47,7 @@ namespace WinFormsApp1
             folderBrowserDialog1 = new FolderBrowserDialog();
             tableLayoutPanel1 = new TableLayoutPanel();
             textBox1 = new TextBox();
-            button1 = new Button();
+            this.ButtonExecute_Click = new Button();
             openFileDialog1 = new OpenFileDialog();
             saveFileDialog1 = new SaveFileDialog();
             folderBrowserDialog2 = new FolderBrowserDialog();
@@ -118,7 +118,7 @@ namespace WinFormsApp1
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Controls.Add(textBox1, 0, 0);
-            tableLayoutPanel1.Controls.Add(button1, 1, 0);
+            tableLayoutPanel1.Controls.Add(this.ButtonExecute_Click, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Top;
             tableLayoutPanel1.Location = new Point(0, 24);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -136,16 +136,16 @@ namespace WinFormsApp1
             textBox1.TabIndex = 1;
             textBox1.TextChanged += TextBox1_TextChanged;
             // 
-            // button1
+            // ButtonExecute_Click
             // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button1.AutoSize = true;
-            button1.Location = new Point(646, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(74, 24);
-            button1.TabIndex = 0;
-            button1.Text = "Execute";
-            button1.UseVisualStyleBackColor = true;
+            this.ButtonExecute_Click.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            this.ButtonExecute_Click.AutoSize = true;
+            this.ButtonExecute_Click.Location = new Point(646, 3);
+            this.ButtonExecute_Click.Name = "ButtonExecute_Click";
+            this.ButtonExecute_Click.Size = new Size(74, 24);
+            this.ButtonExecute_Click.TabIndex = 0;
+            this.ButtonExecute_Click.Text = "Execute";
+            this.ButtonExecute_Click.UseVisualStyleBackColor = true;
             // 
             // openFileDialog1
             // 
@@ -231,7 +231,7 @@ namespace WinFormsApp1
         private SaveFileDialog saveFileDialog1;
         private FolderBrowserDialog folderBrowserDialog2;
         private RichTextBox textBoxLogs;
-        private Button button1;
+        private Button ButtonExecute_Click;
         private TextBox textBox1;
         private ToolStripMenuItem aboutToolStripMenuItem;
     }
