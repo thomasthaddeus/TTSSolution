@@ -16,7 +16,6 @@ namespace TextToSpeech
     using Azure.Identity;
     using Azure.Security.KeyVault.Secrets;
     using Microsoft.CognitiveServices.Speech;
-    using Microsoft.CognitiveServices.Speech.Audio;
 
     /// <summary>
     /// The tts.
@@ -60,8 +59,6 @@ namespace TextToSpeech
                     }
 
                     break;
-                default:
-                    break;
             }
         }
 
@@ -96,7 +93,7 @@ namespace TextToSpeech
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public static async Task Main()
+        public static async Task Master()
         {
             // Replace with the URL of your Azure Key Vault instance.
             string keyVaultUrl = "https://voiceresource.vault.azure.net/";

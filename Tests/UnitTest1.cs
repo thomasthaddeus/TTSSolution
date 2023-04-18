@@ -32,7 +32,6 @@ namespace Tests
         {
             // Change the file path to an actual file
             // Arrange
-            var scraper = new PowerPointScraper();
             string filePath = @"path\to\your\powerpoint.pptx";
 
             // Act
