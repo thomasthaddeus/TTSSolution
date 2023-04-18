@@ -113,7 +113,6 @@ namespace TextToSpeech
                 var inputText = Console.ReadLine() ?? throw new InvalidOperationException();
 
                 var speechSynthesisResult = await speechSynthesizer.SpeakTextAsync(inputText);
-                Debug.Assert(inputText != null, nameof(inputText) + " != null");
                 OutputSpeechSynthesisResult(speechSynthesisResult, inputText);
             }
 
