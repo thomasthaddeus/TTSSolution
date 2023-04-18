@@ -33,8 +33,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CommonUtilities\CommonUtilities.csproj" />
+    <ProjectReference Include="..\Configuration\Configuration.csproj" />
+    <ProjectReference Include="..\DataModels\DataModels.csproj" />
+    <ProjectReference Include="..\ExpansionScraper\ExpansionScraper.csproj" />
     <ProjectReference Include="..\Logging\Logging.csproj" />
     <ProjectReference Include="..\PptxScraper\PptxScraper.csproj" />
+    <ProjectReference Include="..\Security\Security.csproj" />
+    <ProjectReference Include="..\Tests\Tests.csproj" />
     <ProjectReference Include="..\TextToSpeech\TextToSpeech.csproj" />
   </ItemGroup>
 

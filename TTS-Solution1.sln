@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextToSpeech", "TextToSpeec
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PptxScraper", "PptxScraper\PptxScraper.csproj", "{CC065A47-CE6C-4E96-BA9B-F709D4E4ADC0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{40484AB3-2056-42E1-A715-5DA11FFF9763} = {40484AB3-2056-42E1-A715-5DA11FFF9763}
+		{789A6FF7-E648-420F-A84E-1B8E436FC6C2} = {789A6FF7-E648-420F-A84E-1B8E436FC6C2}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpansionScraper", "ExpansionScraper\ExpansionScraper.csproj", "{99EE2A50-C5F8-4AE4-AFF5-535303DCB6E0}"
 EndProject

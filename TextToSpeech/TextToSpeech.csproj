@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Security\Security.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="TextToSpeech.cs">
       <Generator>TextToSp</Generator>
       <CustomToolNamespace>TextToSpeech</CustomToolNamespace>

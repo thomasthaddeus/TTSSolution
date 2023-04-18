@@ -8,13 +8,12 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Azure.ResourceManager;
-using Azure.ResourceManager.Resources;
 
 namespace Configuration
 {
-    using System.Diagnostics.CodeAnalysis;
     using Azure.Identity;
     using Microsoft.Extensions.Configuration;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// The app settings.
@@ -41,7 +40,7 @@ namespace Configuration
                 .Build();
         }
 
-        public async Task<string> CheckExists()
+        public async Task<string?> CheckExists()
         {
             var client = new ArmClient(new DefaultAzureCredential());
             var subscription = await client.GetDefaultSubscriptionAsync();
@@ -49,7 +48,7 @@ namespace Configuration
             const string resourceGroupName = "myRgName";
 
             bool exists = await resourceGroups.ExistsAsync(resourceGroupName);
-            
+
             if (exists)
             {
                 Console.WriteLine($"Resource Group {resourceGroupName} exists.");
@@ -66,6 +65,11 @@ namespace Configuration
             return null;
         }
 
+        public string? GetCognitiveServicesRegion()
+        {
+            return _configuration["CognitiveServices:Region"];
+        }
+
         /// <summary>
         /// The get cognitive services subscription key.
         /// </summary>
@@ -75,11 +79,6 @@ namespace Configuration
         public string? GetCognitiveServicesSubscriptionKey()
         {
             return _configuration["CognitiveServices:SubscriptionKey"];
-        }
-
-        public string? GetCognitiveServicesRegion()
-        {
-            return _configuration["CognitiveServices:Region"];
         }
 
         // Add more methods here to get other configuration settings as needed

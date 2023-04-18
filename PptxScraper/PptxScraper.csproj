@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataModels\DataModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="PowerPointScraper.cs">
       <Generator>PowerPointScraper</Generator>
       <CustomToolNamespace>PptxScraper</CustomToolNamespace>

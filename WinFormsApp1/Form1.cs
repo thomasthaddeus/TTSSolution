@@ -2,12 +2,11 @@
  * Winforms Application For Text-To-Speech Application
  * Author: Thaddeus Thomas
  * Date:    April 17, 2023
- * 
- * 
+ *
+ *
  */
 
-
-using Logging;
+using static Logging.Logger;
 
 namespace WinFormsApp1
 {
@@ -16,9 +15,9 @@ namespace WinFormsApp1
     /// </summary>
     public partial class Form1 : Form
     {
-        private string? filePath;
-        private string? outputFolderPath;
-        private readonly string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "log.txt"); // Set this to your existing log file path
+        private string? _filePath;
+        private string? _outputFolderPath;
+        private readonly string _logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "log.txt"); // Set this to your existing log file path
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Form1"/> class.
@@ -29,12 +28,12 @@ namespace WinFormsApp1
             object sender,
             System.ComponentModel.CancelEventArgs e)
         {
-            openFileDialog1.Filter = "All Files|*.*";
-            openFileDialog1.Title = "Select a File";
+            openFileDialog1.Filter = @"All Files|*.*";
+            openFileDialog1.Title = @"Select a File";
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                filePath = openFileDialog1.FileName;
+                _filePath = openFileDialog1.FileName;
             }
         }
 
@@ -44,16 +43,16 @@ namespace WinFormsApp1
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                outputFolderPath = folderBrowserDialog1.SelectedPath;
+                _outputFolderPath = folderBrowserDialog1.SelectedPath;
             }
 
-            openFileDialog1.Filter = "All Files|*.*";
-            openFileDialog1.Title = "Select a File";
+            openFileDialog1.Filter = @"All Files|*.*";
+            openFileDialog1.Title = @"Select a File";
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                filePath = openFileDialog1.FileName;
-                Logger.Info($"File selected: {filePath}");
+                _filePath = openFileDialog1.FileName;
+                Logger.Info($"File selected: {_filePath}");
             }
         }
 
@@ -61,9 +60,9 @@ namespace WinFormsApp1
             object sender,
             EventArgs e)
         {
-            if (File.Exists(logFilePath))
+            if (File.Exists(_logFilePath))
             {
-                textBoxLogs.Text = File.ReadAllText(logFilePath);
+                textBoxLogs.Text = File.ReadAllText(_logFilePath);
             }
             else
             {
@@ -77,8 +76,8 @@ namespace WinFormsApp1
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                outputFolderPath = folderBrowserDialog1.SelectedPath;
-                Logger.Info($"Output folder selected: {outputFolderPath}");
+                _outputFolderPath = folderBrowserDialog1.SelectedPath;
+                Logger.Info($"Output folder selected: {_outputFolderPath}");
             }
         }
 
@@ -86,12 +85,12 @@ namespace WinFormsApp1
             object sender,
             EventArgs e)
         {
-            if (!string.IsNullOrEmpty(filePath) && !string.IsNullOrEmpty(outputFolderPath))
+            if (!string.IsNullOrEmpty(_filePath) && !string.IsNullOrEmpty(_outputFolderPath))
             {
                 // Execute your command on the file here.
                 // You can use the filePath and outputFolderPath variables.
-                Logger.Info($"Executing command on file: {filePath}");
-                Logger.Info($"Command output will be saved in folder: {outputFolderPath}");
+                Logger.Info($"Executing command on file: {_filePath}");
+                Logger.Info($"Command output will be saved in folder: {_outputFolderPath}");
 
                 // After executing the command, log the result.
                 Logger.Info($"Command executed successfully.");
@@ -102,15 +101,13 @@ namespace WinFormsApp1
             }
         }
 
-
         private void TextBox1_TextChanged(
             object sender,
             EventArgs e)
         {
             // Update the outputFolderPath variable based on the new text in the textbox
-            outputFolderPath = textBox1.Text;
+            _outputFolderPath = textBox1.Text;
         }
-
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {

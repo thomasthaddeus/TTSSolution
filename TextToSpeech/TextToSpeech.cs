@@ -10,13 +10,12 @@
 
 namespace TextToSpeech
 {
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
-
     using Azure.Identity;
     using Azure.Security.KeyVault.Secrets;
     using Microsoft.CognitiveServices.Speech;
-
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using Security.ApiKeyManager;
     /// <summary>
     /// The tts.
     /// </summary>
@@ -25,12 +24,12 @@ namespace TextToSpeech
         /// <summary>
         /// This example requires environment variables named "spKey"
         /// </summary>
-        private static string? spKey = Environment.GetEnvironmentVariable("spKey");
+        //private static string? spKey = Environment.GetEnvironmentVariable("spKey");
 
         /// <summary>
         /// Environment variable "spRegion"
         /// </summary>
-        private static string? spRegion = Environment.GetEnvironmentVariable("spRegion");
+        //private static string? spRegion = Environment.GetEnvironmentVariable("spRegion");
 
         /// <summary>
         /// The output speech synthesis result.
@@ -48,6 +47,7 @@ namespace TextToSpeech
                 case ResultReason.SynthesizingAudioCompleted:
                     Console.WriteLine($"Speech synthesized for text: [{text}]");
                     break;
+
                 case ResultReason.Canceled:
                     var cancellation = SpeechSynthesisCancellationDetails.FromResult(speechSynthesisResult);
                     Console.WriteLine($"CANCELED: Reason={cancellation.Reason}");
@@ -76,7 +76,7 @@ namespace TextToSpeech
         [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
         public static async Task SynthesizeAudioAsync()
         {
-            var speechConfig = SpeechConfig.FromSubscription(spKey, spRegion);
+            var speechConfig = SpeechConfig.FromSubscription();
             speechConfig.SetSpeechSynthesisOutputFormat(SpeechSynthesisOutputFormat.Riff24Khz16BitMonoPcm);
 
             using var speechSynthesizer = new SpeechSynthesizer(speechConfig, null);
@@ -85,7 +85,6 @@ namespace TextToSpeech
             using var stream = AudioDataStream.FromResult(result);
             await stream.SaveToWaveFileAsync($"%Documents%/PptxAudioFiles/audio_file.wav");
         }
-
 
         /// <summary>
         /// The main method of the class
@@ -102,10 +101,10 @@ namespace TextToSpeech
             spKey = await GetSecretFromKeyVaultAsync(keyVaultUrl, "spKey");
             spRegion = await GetSecretFromKeyVaultAsync(keyVaultUrl, "spRegion");
 
-            var speechConfig = SpeechConfig.FromSubscription(spKey, spRegion);      
+            var speechConfig = SpeechConfig.FromSubscription(spKey, spRegion);
 
             // The language of the voice that speaks.
-            speechConfig.SpeechSynthesisVoiceName = "en-US-JennyNeural"; 
+            speechConfig.SpeechSynthesisVoiceName = "en-US-JennyNeural";
 
             using (var speechSynthesizer = new SpeechSynthesizer(speechConfig))
             {
@@ -114,7 +113,6 @@ namespace TextToSpeech
                 var inputText = Console.ReadLine() ?? throw new InvalidOperationException();
 
                 var speechSynthesisResult = await speechSynthesizer.SpeakTextAsync(inputText);
-                Debug.Assert(inputText != null, nameof(inputText) + " != null");
                 OutputSpeechSynthesisResult(speechSynthesisResult, inputText);
             }
 
