@@ -15,7 +15,7 @@ namespace TextToSpeech
     using Microsoft.CognitiveServices.Speech;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-
+    using Security.ApiKeyManager;
     /// <summary>
     /// The tts.
     /// </summary>
@@ -24,12 +24,12 @@ namespace TextToSpeech
         /// <summary>
         /// This example requires environment variables named "spKey"
         /// </summary>
-        private static string? spKey = Environment.GetEnvironmentVariable("spKey");
+        //private static string? spKey = Environment.GetEnvironmentVariable("spKey");
 
         /// <summary>
         /// Environment variable "spRegion"
         /// </summary>
-        private static string? spRegion = Environment.GetEnvironmentVariable("spRegion");
+        //private static string? spRegion = Environment.GetEnvironmentVariable("spRegion");
 
         /// <summary>
         /// The output speech synthesis result.
@@ -76,7 +76,7 @@ namespace TextToSpeech
         [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
         public static async Task SynthesizeAudioAsync()
         {
-            var speechConfig = SpeechConfig.FromSubscription(spKey, spRegion);
+            var speechConfig = SpeechConfig.FromSubscription();
             speechConfig.SetSpeechSynthesisOutputFormat(SpeechSynthesisOutputFormat.Riff24Khz16BitMonoPcm);
 
             using var speechSynthesizer = new SpeechSynthesizer(speechConfig, null);
