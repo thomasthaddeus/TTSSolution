@@ -1,6 +1,10 @@
-﻿/* 
- *
- *
+﻿/* Windows GUI for the Pptx Text to Speech Application
+ * Author: Thaddeus Thomas
+ * Date: 2023-04-13
+ * 
+ * Notes: 
+ * TODO: debug the text input for selecting a file
+ * TODO: Debug the output location
  */
 
 using PptxScraper;
@@ -231,7 +235,6 @@ namespace WinFormsApp1
         private SaveFileDialog saveFileDialog1;
         private FolderBrowserDialog folderBrowserDialog2;
         private RichTextBox textBoxLogs;
-        private Button ButtonExecute_Click;
         private TextBox textBox1;
         private ToolStripMenuItem aboutToolStripMenuItem;
     }

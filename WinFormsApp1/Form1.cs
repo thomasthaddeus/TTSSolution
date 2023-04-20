@@ -2,11 +2,11 @@
  * Win forms Application For Text-To-Speech Application
  * Author: Thaddeus Thomas
  * Date:    April 17, 2023
- * Issues:
+ * 
  * Description of methods and variables
  */
 
-using Logging.Logger;
+
 
 namespace WinFormsApp1
 {
@@ -52,7 +52,7 @@ namespace WinFormsApp1
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 _filePath = openFileDialog1.FileName;
-                Logger.Info($"File selected: {_filePath}");
+                Logging.Logger.Info($"File selected: {_filePath}");
             }
         }
 
@@ -100,6 +100,8 @@ namespace WinFormsApp1
                 MessageBox.Show(@"Please select a file and an output folder before executing the command.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+
 
         private void TextBox1_TextChanged(
             object sender,
