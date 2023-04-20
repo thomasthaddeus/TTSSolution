@@ -54,12 +54,14 @@ namespace PptxScraper
                 OpenXmlPart? slidePart = presentationPart.GetPartById(relationshipId);
                 if (slidePart is not SlidePart sp || sp.Slide == null) continue;
 
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                 textList.AddRange(from shape in sp.Slide.Descendants<Shape>()
                                   where shape.TextBody != null
                                   from paragraph in shape.TextBody.Descendants<DocumentFormat.OpenXml.Drawing.Paragraph>()
                                   select paragraph.InnerText into text
                                   where !string.IsNullOrWhiteSpace(text)
                                   select text);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
 
             return textList;
