@@ -13,9 +13,8 @@ namespace TextToSpeech
     using Azure.Identity;
     using Azure.Security.KeyVault.Secrets;
     using Microsoft.CognitiveServices.Speech;
-    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using Security.ApiKeyManager;
+
     /// <summary>
     /// The tts.
     /// </summary>
@@ -23,7 +22,6 @@ namespace TextToSpeech
     {
         // https://westus.tts.speech.microsoft.com/cognitiveservices/voices/list
         // USe to get the voices list
-
 
         /// <summary>
         /// The output speech synthesis result.
