@@ -1,11 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Logger.cs" author="Thaddeus Thomas">
 //
-//  Date:       20230328
+//  Date:       2023-03-28
 //  Project:    Logging
 //  Solution:   TextToSpeech
-//  Notes:
-//
 // </copyright>
 // <summary>
 //   The logger.
