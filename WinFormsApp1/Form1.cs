@@ -7,6 +7,7 @@
  */
 
 
+using Microsoft.VisualStudio.TestTools.UnitTesting.Logging;
 
 namespace WinFormsApp1
 {
@@ -52,7 +53,7 @@ namespace WinFormsApp1
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 _filePath = openFileDialog1.FileName;
-                Logging.Logger.Info($"File selected: {_filePath}");
+                Logger.LogMessage($"File selected: {_filePath}");
             }
         }
 
@@ -66,7 +67,7 @@ namespace WinFormsApp1
             }
             else
             {
-                MessageBox.Show(@"Log file not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"Log file not found.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -74,11 +75,13 @@ namespace WinFormsApp1
             object sender,
             EventArgs e)
         {
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            if (folderBrowserDialog1.ShowDialog() != DialogResult.OK)
             {
-                _outputFolderPath = folderBrowserDialog1.SelectedPath;
-                Logger.Info($"Output folder selected: {_outputFolderPath}");
+                return;
             }
+
+            _outputFolderPath = folderBrowserDialog1.SelectedPath;
+            Logger.LogMessage($"Output folder selected: {_outputFolderPath}");
         }
 
         private void ButtonExecute_Click(
@@ -89,15 +92,15 @@ namespace WinFormsApp1
             {
                 // Execute your command on the file here.
                 // You can use the filePath and outputFolderPath variables.
-                Logger.Info($"Executing command on file: {_filePath}");
-                Logger.Info($"Command output will be saved in folder: {_outputFolderPath}");
+                Logger.LogMessage($"Executing command on file: {_filePath}");
+                Logger.LogMessage($"Command output will be saved in folder: {_outputFolderPath}");
 
                 // After executing the command, log the result.
-                Logger.Info($"Command executed successfully.");
+                Logger.LogMessage($"Command executed successfully.");
             }
             else
             {
-                MessageBox.Show(@"Please select a file and an output folder before executing the command.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(@"Please select a file and an output folder before executing the command.", @"Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -114,11 +117,11 @@ namespace WinFormsApp1
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Replace the title and message with your application's information
-            string title = "About My Application";
-            string message = "Pptx Text-To-Speech v1.0\n\n" +
-                             "Developed by Thaddeus Thomas\n\n" +
-                             "Copyright (c) 2023 Thads IT Solutions\n\n" +
-                             "All rights reserved.";
+            const string title = "About My Application";
+            const string message = "Pptx Text-To-Speech v1.0\n\n" +
+                                   "Developed by Thaddeus Thomas\n\n" +
+                                   "Copyright (c) 2023 Thads IT Solutions\n\n" +
+                                   "All rights reserved.";
 
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
