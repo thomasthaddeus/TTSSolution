@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /TextToSpeech/Properties/ServiceDependencies/local/secrets1.arm.json
 /TextToSpeech/Properties/serviceDependencies.json
+/Configuration/Properties/microsoft-identity-association.json

@@ -14,6 +14,7 @@ namespace TextToSpeech
     using Azure.Security.KeyVault.Secrets;
     using Microsoft.CognitiveServices.Speech;
     using System.Diagnostics.CodeAnalysis;
+    using Security;
 
     /// <summary>
     /// The tts.
@@ -51,6 +52,52 @@ namespace TextToSpeech
                     }
 
                     break;
+                case ResultReason.NoMatch:
+                    break;
+                case ResultReason.RecognizingSpeech:
+                    break;
+                case ResultReason.RecognizedSpeech:
+                    break;
+                case ResultReason.RecognizingIntent:
+                    break;
+                case ResultReason.RecognizedIntent:
+                    break;
+                case ResultReason.TranslatingSpeech:
+                    break;
+                case ResultReason.TranslatedSpeech:
+                    break;
+                case ResultReason.SynthesizingAudio:
+                    break;
+                case ResultReason.RecognizingKeyword:
+                    break;
+                case ResultReason.RecognizedKeyword:
+                    break;
+                case ResultReason.SynthesizingAudioStarted:
+                    break;
+                case ResultReason.TranslatingParticipantSpeech:
+                    break;
+                case ResultReason.TranslatedParticipantSpeech:
+                    break;
+                case ResultReason.TranslatedInstantMessage:
+                    break;
+                case ResultReason.TranslatedParticipantInstantMessage:
+                    break;
+                case ResultReason.EnrollingVoiceProfile:
+                    break;
+                case ResultReason.EnrolledVoiceProfile:
+                    break;
+                case ResultReason.RecognizedSpeakers:
+                    break;
+                case ResultReason.RecognizedSpeaker:
+                    break;
+                case ResultReason.ResetVoiceProfile:
+                    break;
+                case ResultReason.DeletedVoiceProfile:
+                    break;
+                case ResultReason.VoicesListRetrieved:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -86,7 +133,7 @@ namespace TextToSpeech
         public static async Task Master()
         {
             // Replace with the URL of your Azure Key Vault instance.
-            string keyVaultUrl = "https://voiceresource.vault.azure.net/";
+            const string keyVaultUrl = "https://voiceresource.vault.azure.net/";
 
             // Retrieve the secrets from Azure Key Vault.
             spKey = await GetSecretFromKeyVaultAsync(keyVaultUrl, "spKey");

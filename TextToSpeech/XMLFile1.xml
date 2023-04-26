@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<speak xmlns="http://www.w3.org/2001/10/synthesis" version="1.0" xml:lang="en-US">
+	<voice name="en-AU-NatashaNeural">
+		Hello world!
+		<break time="1s" />
+		This is Natasha!
+	</voice>
+	<voice name="en-SG-WayneNeural">
+		The Arizona State Flower is the <phoneme alphabet="sapi" ph="s aa w aa r o">Saguaro</phoneme> Cactus Blossom.
+	</voice>
+	<voice name="en-IN-NeerjaNeural">
+		<break time="1s" />
+		Hello world!
+		This is Neerja!
+	</voice>
+	<voice name="en-CA-LiamNeural">
+		Hello world!
+		This is Liam!
+		<break time="1s" />
+	</voice>
+	<voice name="en-US-JennyNeural">
+		<prosody rate="-5%" pitch="0%">
+			Hello world!
+			<break time="1s" />
+			This is Jenny!
+		</prosody>
+	</voice>
+</speak>
