@@ -51,7 +51,7 @@ namespace PptxScraper
 
                 if (string.IsNullOrEmpty(relationshipId)) continue;
 
-                OpenXmlPart? slidePart = presentationPart.GetPartById(relationshipId);
+                var slidePart = presentationPart.GetPartById(relationshipId);
                 if (slidePart is not SlidePart sp || sp.Slide == null) continue;
 
 #pragma warning disable CS8602 // Dereference of a possibly null reference.

@@ -9,6 +9,7 @@
 
 using PptxScraper;
 using TextToSpeech;
+using Configuration;
 
 namespace WinFormsApp1
 {
@@ -51,11 +52,11 @@ namespace WinFormsApp1
             folderBrowserDialog1 = new FolderBrowserDialog();
             tableLayoutPanel1 = new TableLayoutPanel();
             textBox1 = new TextBox();
-            this.ButtonExecute_Click = new Button();
             openFileDialog1 = new OpenFileDialog();
             saveFileDialog1 = new SaveFileDialog();
             folderBrowserDialog2 = new FolderBrowserDialog();
             textBoxLogs = new RichTextBox();
+            button1 = new Button();
             menuStrip1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -122,7 +123,7 @@ namespace WinFormsApp1
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Controls.Add(textBox1, 0, 0);
-            tableLayoutPanel1.Controls.Add(this.ButtonExecute_Click, 1, 0);
+            tableLayoutPanel1.Controls.Add(button1, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Top;
             tableLayoutPanel1.Location = new Point(0, 24);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -136,20 +137,10 @@ namespace WinFormsApp1
             // 
             textBox1.Location = new Point(3, 3);
             textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Input file path to text for conversion.";
             textBox1.Size = new Size(607, 23);
             textBox1.TabIndex = 1;
             textBox1.TextChanged += TextBox1_TextChanged;
-            // 
-            // ButtonExecute_Click
-            // 
-            this.ButtonExecute_Click.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExecute_Click.AutoSize = true;
-            this.ButtonExecute_Click.Location = new Point(646, 3);
-            this.ButtonExecute_Click.Name = "ButtonExecute_Click";
-            this.ButtonExecute_Click.Size = new Size(74, 24);
-            this.ButtonExecute_Click.TabIndex = 0;
-            this.ButtonExecute_Click.Text = "Execute";
-            this.ButtonExecute_Click.UseVisualStyleBackColor = true;
             // 
             // openFileDialog1
             // 
@@ -164,6 +155,15 @@ namespace WinFormsApp1
             textBoxLogs.Size = new Size(723, 198);
             textBoxLogs.TabIndex = 1;
             textBoxLogs.Text = "";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(616, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 2;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -203,8 +203,8 @@ namespace WinFormsApp1
         private void execButton_Click(object sender, EventArgs e)
         {
             string filePath = textBox1.Text;
-
-            if (string.IsNullOrWhiteSpace(filePath) || !File.Exists(filePath))
+            Task<string> locExists = AppSettings.CheckExists();
+            if (!string.IsNullOrWhiteSpace(filePath))
             {
                 MessageBox.Show("Please select a valid PowerPoint file.");
                 return;
@@ -237,5 +237,6 @@ namespace WinFormsApp1
         private RichTextBox textBoxLogs;
         private TextBox textBox1;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private Button button1;
     }
 }

@@ -19,21 +19,19 @@
 
         public bool IsValidApiKey(string apiKey)
         {
-            if (_apiKeys.TryGetValue(key: apiKey, value: out var creationDate))
+            if (!_apiKeys.TryGetValue(key: apiKey, value: out var creationDate))
             {
-                TimeSpan age = DateTime.UtcNow - creationDate;
-                if (age < TimeSpan.FromDays(value: 30)) // Assuming the API key is valid for 30 days
-                {
-                    return true;
-                }
+                return false;
             }
 
-            return false;
+            var age = DateTime.UtcNow - creationDate;
+            return age < TimeSpan.FromDays(value: 30); // Assuming the API key is valid for 30 days
         }
 
         public void RevokeApiKey(string apiKey)
         {
             _apiKeys.Remove(key: apiKey);
+            Console.WriteLine("Key has been revoked");
         }
     }
 }

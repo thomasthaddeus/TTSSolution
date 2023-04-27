@@ -7,23 +7,23 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Azure.Identity;
 using Azure.ResourceManager;
 
 namespace Configuration
 {
-    using Azure.Identity;
     using Microsoft.Extensions.Configuration;
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// The app settings.
     /// </summary>
-    public class AppSettings
+    public abstract class AppSettings
     {
         /// <summary>
         /// The _configuration.
         /// </summary>
-        private readonly IConfigurationRoot _configuration;
+        public readonly IConfigurationRoot Configuration;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppSettings"/> class.
@@ -32,15 +32,15 @@ namespace Configuration
         /// The configuration file path.
         /// </param>
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1101:PrefixLocalCallsWithThis", Justification = "Reviewed. Suppression is OK here.")]
-        public AppSettings(string configurationFilePath)
+        protected AppSettings(string configurationFilePath)
         {
-            _configuration = new ConfigurationBuilder()
+            Configuration = new ConfigurationBuilder()
                 .SetBasePath(basePath: Path.GetDirectoryName(path: configurationFilePath) ?? throw new InvalidOperationException())
                 .AddJsonFile(path: Path.GetFileName(path: configurationFilePath))
                 .Build();
         }
 
-        public async Task<string?> CheckExists()
+        public static async Task<string?> CheckExists()
         {
             var client = new ArmClient(new DefaultAzureCredential());
             var subscription = await client.GetDefaultSubscriptionAsync();
@@ -63,22 +63,6 @@ namespace Configuration
             }
 
             return null;
-        }
-
-        public string? GetCognitiveServicesRegion()
-        {
-            return _configuration["CognitiveServices:Region"];
-        }
-
-        /// <summary>
-        /// The get cognitive services subscription key.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="string"/>.
-        /// </returns>
-        public string? GetCognitiveServicesSubscriptionKey()
-        {
-            return _configuration["CognitiveServices:SubscriptionKey"];
         }
 
         // Add more methods here to get other configuration settings as needed
