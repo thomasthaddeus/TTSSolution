@@ -7,18 +7,18 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Azure.Identity;
 using Azure.ResourceManager;
 
 namespace Configuration
 {
-    using Azure.Identity;
     using Microsoft.Extensions.Configuration;
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// The app settings.
     /// </summary>
-    public class AppSettings
+    public abstract class AppSettings
     {
         /// <summary>
         /// The _configuration.
@@ -32,7 +32,7 @@ namespace Configuration
         /// The configuration file path.
         /// </param>
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1101:PrefixLocalCallsWithThis", Justification = "Reviewed. Suppression is OK here.")]
-        public AppSettings(string configurationFilePath)
+        protected AppSettings(string configurationFilePath)
         {
             Configuration = new ConfigurationBuilder()
                 .SetBasePath(basePath: Path.GetDirectoryName(path: configurationFilePath) ?? throw new InvalidOperationException())
@@ -40,7 +40,7 @@ namespace Configuration
                 .Build();
         }
 
-        public async Task<string?> CheckExists()
+        public static async Task<string?> CheckExists()
         {
             var client = new ArmClient(new DefaultAzureCredential());
             var subscription = await client.GetDefaultSubscriptionAsync();
@@ -63,25 +63,6 @@ namespace Configuration
             }
 
             return null;
-        }
-
-
-        public string? GetCognitiveServicesRegion()
-        {
-            return Configuration["CognitiveServices:Region"];
-        }
-
-
-
-        /// <summary>
-        /// The get cognitive services subscription key.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="string"/>.
-        /// </returns>
-        public string? GetCognitiveServicesSubscriptionKey()
-        {
-            return Configuration["CognitiveServices:SubscriptionKey"];
         }
 
         // Add more methods here to get other configuration settings as needed

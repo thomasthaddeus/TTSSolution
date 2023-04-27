@@ -8,30 +8,26 @@
  *
  */
 
+using System.Diagnostics.CodeAnalysis;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using Microsoft.CognitiveServices.Speech;
+
 namespace TextToSpeech
 {
-    using Azure.Identity;
-    using Azure.Security.KeyVault.Secrets;
-    using Microsoft.CognitiveServices.Speech;
-    using System.Diagnostics.CodeAnalysis;
-    using Security;
-
     /// <summary>
-    /// The tts.
+    ///     The TextToSpeech class.
     /// </summary>
-    public class TextToSp
+    public class TextToSpeech
     {
-        // https://westus.tts.speech.microsoft.com/cognitiveservices/voices/list
-        // USe to get the voices list
-
         /// <summary>
-        /// The output speech synthesis result.
+        ///     The output speech synthesis result.
         /// </summary>
         /// <param name="speechSynthesisResult">
-        /// The speech synthesis result.
+        ///     The speech synthesis result.
         /// </param>
         /// <param name="text">
-        /// The text.
+        ///     The text.
         /// </param>
         private static void OutputSpeechSynthesisResult(SpeechSynthesisResult speechSynthesisResult, string text)
         {
@@ -48,56 +44,14 @@ namespace TextToSpeech
                     {
                         Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
                         Console.WriteLine($"CANCELED: ErrorDetails=[{cancellation.ErrorDetails}]");
-                        Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+                        Console.WriteLine("CANCELED: Did you set the speech resource key and region values?");
                     }
 
                     break;
-                case ResultReason.NoMatch:
-                    break;
-                case ResultReason.RecognizingSpeech:
-                    break;
-                case ResultReason.RecognizedSpeech:
-                    break;
-                case ResultReason.RecognizingIntent:
-                    break;
-                case ResultReason.RecognizedIntent:
-                    break;
-                case ResultReason.TranslatingSpeech:
-                    break;
-                case ResultReason.TranslatedSpeech:
-                    break;
-                case ResultReason.SynthesizingAudio:
-                    break;
-                case ResultReason.RecognizingKeyword:
-                    break;
-                case ResultReason.RecognizedKeyword:
-                    break;
-                case ResultReason.SynthesizingAudioStarted:
-                    break;
-                case ResultReason.TranslatingParticipantSpeech:
-                    break;
-                case ResultReason.TranslatedParticipantSpeech:
-                    break;
-                case ResultReason.TranslatedInstantMessage:
-                    break;
-                case ResultReason.TranslatedParticipantInstantMessage:
-                    break;
-                case ResultReason.EnrollingVoiceProfile:
-                    break;
-                case ResultReason.EnrolledVoiceProfile:
-                    break;
-                case ResultReason.RecognizedSpeakers:
-                    break;
-                case ResultReason.RecognizedSpeaker:
-                    break;
-                case ResultReason.ResetVoiceProfile:
-                    break;
-                case ResultReason.DeletedVoiceProfile:
-                    break;
-                case ResultReason.VoicesListRetrieved:
-                    break;
+
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(speechSynthesisResult.Reason),
+                        speechSynthesisResult.Reason, null);
             }
         }
 
@@ -109,41 +63,41 @@ namespace TextToSpeech
         }
 
         /// <summary>
-        /// Synthesizes speech for output
+        ///     Synthesizes speech for output
         /// </summary>
         /// <returns>The wav file of the audio</returns>
         [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
         public static async Task SynthesizeAudioAsync()
         {
+            var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);
             speechConfig.SetSpeechSynthesisOutputFormat(SpeechSynthesisOutputFormat.Riff48Khz16BitMonoPcm);
 
             using var speechSynthesizer = new SpeechSynthesizer(speechConfig, null);
             var result = await speechSynthesizer.SpeakTextAsync("I'm excited to try text-to-speech");
 
             using var stream = AudioDataStream.FromResult(result);
-            await stream.SaveToWaveFileAsync($"%Documents%/PptxAudioFiles/audio_file.wav");
+            await stream.SaveToWaveFileAsync("%Documents%/PptxAudioFiles/audio_file.wav");
         }
 
         /// <summary>
-        /// The main method of the class
+        ///     The main method of the class
         /// </summary>
         /// <returns>
-        /// The <see cref="Task"/>.
+        ///     The <see cref="Task" />.
         /// </returns>
         public static async Task Master()
         {
             // Replace with the URL of your Azure Key Vault instance.
-            const string keyVaultUrl = "https://voiceresource.vault.azure.net/";
+            const string keyVaultUrl = @"https://ttvkeyvault.vault.azure.net/";
 
             // Retrieve the secrets from Azure Key Vault.
-            spKey = await GetSecretFromKeyVaultAsync(keyVaultUrl, "spKey");
-            spRegion = await GetSecretFromKeyVaultAsync(keyVaultUrl, "spRegion");
+            speechKey = await GetSecretFromKeyVaultAsync(keyVaultUrl, "speechKey");
+            speechRegion = await GetSecretFromKeyVaultAsync(keyVaultUrl, "speechRegion");
 
-            var speechConfig = SpeechConfig.FromSubscription(spKey, spRegion);
+            var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);
 
             // The language of the voice that speaks.
             speechConfig.SpeechSynthesisVoiceName = "en-US-JennyNeural";
-
             using (var speechSynthesizer = new SpeechSynthesizer(speechConfig))
             {
                 // Get text from the console and synthesize to the default speaker.
@@ -159,6 +113,45 @@ namespace TextToSpeech
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
+        }
+    }
+
+    internal static class AzureKeyVault
+    {
+        public static async Task CreateKey()
+        {
+            const string secretName = "SpeechKey";
+            const string keyVaultName = "TtVKeyVault";
+            const string kvUri = $"https://{keyVaultName}.vault.azure.net";
+
+            var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
+
+            var secretValue = "ec8772e70245415f8383366dcc2ab8ed";
+
+            Console.Write(
+                $"Creating a secret in {keyVaultName} called '{secretName}' with the value '{secretValue}' ...");
+            await client.SetSecretAsync(secretName, secretValue);
+            Console.WriteLine(" done.");
+
+            Console.WriteLine("Forgetting your secret.");
+            secretValue = string.Empty;
+            Console.WriteLine($"Your secret is '{secretValue}'.");
+
+            Console.WriteLine($"Retrieving your secret from {keyVaultName}.");
+            var secret = await client.GetSecretAsync(secretName);
+            Console.WriteLine($"Your secret is '{secret.Value.Value}'.");
+
+            /*
+            Console.Write($"Deleting your secret from {keyVaultName} ...");
+            DeleteSecretOperation operation = await client.StartDeleteSecretAsync(secretName);
+            // You only need to wait for completion if you want to purge or recover the secret.
+            await operation.WaitForCompletionAsync();
+            Console.WriteLine(" done.");
+            
+            Console.Write($"Purging your secret from {keyVaultName} ...");
+            await client.PurgeDeletedSecretAsync(secretName);
+            Console.WriteLine(" done.");
+            */
         }
     }
 }

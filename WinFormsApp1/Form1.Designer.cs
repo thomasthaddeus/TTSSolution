@@ -9,6 +9,7 @@
 
 using PptxScraper;
 using TextToSpeech;
+using Configuration;
 
 namespace WinFormsApp1
 {
@@ -202,8 +203,8 @@ namespace WinFormsApp1
         private void execButton_Click(object sender, EventArgs e)
         {
             string filePath = textBox1.Text;
-
-            if (!(!string.IsNullOrWhiteSpace(filePath) && !CheckExists(filePath)))
+            Task<string> locExists = AppSettings.CheckExists();
+            if (!string.IsNullOrWhiteSpace(filePath))
             {
                 MessageBox.Show("Please select a valid PowerPoint file.");
                 return;
