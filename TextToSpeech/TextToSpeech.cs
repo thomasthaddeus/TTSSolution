@@ -52,6 +52,7 @@ namespace TextToSpeech
 
                 default:
                     throw argumentOutOfRangeException;
+                   // throw new ArgumentOutOfRangeException(nameof(speechSynthesisResult.Reason), speechSynthesisResult.Reason, null);
             }
         }
 
@@ -114,45 +115,6 @@ namespace TextToSpeech
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
-        }
-    }
-
-    internal static class AzureKeyVault
-    {
-        public static async Task CreateKey()
-        {
-            const string secretName = "SpeechKey";
-            const string keyVaultName = "key-vault-speech";
-            const string kvUri = $"https://{keyVaultName}.vault.azure.net";
-
-            var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
-
-            var secretValue = "ec8772e70245415f8383366dcc2ab8ed";
-
-            Console.Write(
-                $"Creating a secret in {keyVaultName} called '{secretName}' with the value '{secretValue}' ...");
-            await client.SetSecretAsync(secretName, secretValue);
-            Console.WriteLine(" done.");
-
-            Console.WriteLine("Forgetting your secret.");
-            secretValue = string.Empty;
-            Console.WriteLine($"Your secret is '{secretValue}'.");
-
-            Console.WriteLine($"Retrieving your secret from {keyVaultName}.");
-            var secret = await client.GetSecretAsync(secretName);
-            Console.WriteLine($"Your secret is '{secret.Value.Value}'.");
-
-            /*
-            Console.Write($"Deleting your secret from {keyVaultName} ...");
-            DeleteSecretOperation operation = await client.StartDeleteSecretAsync(secretName);
-            // You only need to wait for completion if you want to purge or recover the secret.
-            await operation.WaitForCompletionAsync();
-            Console.WriteLine(" done.");
-            
-            Console.Write($"Purging your secret from {keyVaultName} ...");
-            await client.PurgeDeletedSecretAsync(secretName);
-            Console.WriteLine(" done.");
-            */
         }
     }
 }
