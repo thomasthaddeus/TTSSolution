@@ -37,7 +37,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FCB66CE7-DD1D-488E-AAA9-D24C9664F713}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		Configuration\Properties\microsoft-identity-association.json = Configuration\Properties\microsoft-identity-association.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsApp1", "WinFormsApp1\WinFormsApp1.csproj", "{0A623AD8-11BA-4D5B-825A-A78D94E07E86}"

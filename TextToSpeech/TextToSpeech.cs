@@ -29,7 +29,8 @@ namespace TextToSpeech
         /// <param name="text">
         ///     The text.
         /// </param>
-        private static void OutputSpeechSynthesisResult(SpeechSynthesisResult speechSynthesisResult, string text)
+        /// <param name="argumentOutOfRangeException"></param>
+        private static void OutputSpeechSynthesisResult(SpeechSynthesisResult speechSynthesisResult, string text, ArgumentOutOfRangeException argumentOutOfRangeException)
         {
             switch (speechSynthesisResult.Reason)
             {
@@ -50,8 +51,7 @@ namespace TextToSpeech
                     break;
 
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(speechSynthesisResult.Reason),
-                        speechSynthesisResult.Reason, null);
+                    throw argumentOutOfRangeException;
             }
         }
 
@@ -105,7 +105,8 @@ namespace TextToSpeech
                 var inputText = Console.ReadLine() ?? throw new InvalidOperationException();
 
                 var speechSynthesisResult = await speechSynthesizer.SpeakTextAsync(inputText);
-                OutputSpeechSynthesisResult(speechSynthesisResult, inputText);
+                OutputSpeechSynthesisResult(speechSynthesisResult, inputText, new ArgumentOutOfRangeException(nameof(speechSynthesisResult.Reason),
+                    speechSynthesisResult.Reason, null));
             }
 
             // Call the SynthesizeAudioAsync method to create an audio file.
@@ -121,7 +122,7 @@ namespace TextToSpeech
         public static async Task CreateKey()
         {
             const string secretName = "SpeechKey";
-            const string keyVaultName = "TtVKeyVault";
+            const string keyVaultName = "key-vault-speech";
             const string kvUri = $"https://{keyVaultName}.vault.azure.net";
 
             var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
